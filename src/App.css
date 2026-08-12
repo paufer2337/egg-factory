@@ -117,6 +117,10 @@ h1 {
 }
 
 .machine-visual {
+  /* Manual carton alignment: negative X = left, positive X = right;
+     negative Y = up, positive Y = down. */
+  --carton-offset-x: 0px;
+  --carton-offset-y: 0px;
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
@@ -221,7 +225,7 @@ h1 {
   transform: translateX(-50%);
 }
 
-.carton {
+.carton-positioner {
   position: absolute;
   z-index: 3;
   top: 20.8%;
@@ -229,6 +233,13 @@ h1 {
   width: 22%;
   aspect-ratio: 360 / 190;
   filter: drop-shadow(0 7px 5px rgb(0 0 0 / 45%));
+  translate: var(--carton-offset-x) var(--carton-offset-y);
+}
+
+.carton {
+  position: relative;
+  width: 100%;
+  height: 100%;
   transition: transform var(--transfer-time, 220ms) ease-in, opacity 160ms ease;
 }
 
@@ -838,9 +849,8 @@ h1 {
     text-align: right;
   }
 
-  .carton {
+  .carton-positioner {
     width: 22%;
-    left: 39%;
   }
 
   .readout-grid {

@@ -22,7 +22,9 @@ export function MachineVisual({ counters, total, phase }: MachineVisualProps) {
             <FeederLane counter={physicalCounters[index]} key={index} />
           ))}
         </div>
-        <Carton occupancy={total} phase={phase} />
+        <div className="carton-positioner">
+          <Carton occupancy={total} phase={phase} />
+        </div>
         {counters.length === 0 && <div className="machine-visual__empty">EMPTY MACHINE RACK</div>}
       </div>
       {counters.length === 0 && <p className="empty-rack-message">Machine rack is empty.</p>}
