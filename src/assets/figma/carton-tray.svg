@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="190" viewBox="0 0 360 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Inner Tray Contour">
+<path id="Vector" d="M34 86C78 79 282 79 326 86C334 88 337 94 337 105L334 151C333 160 326 165 315 167C263 171 97 171 45 167C34 165 27 160 26 151L23 105C23 94 26 88 34 86Z" fill="url(#paint0_linear_0_65)" stroke="#B09F82" stroke-opacity="0.32" stroke-width="1.5"/>
+<path id="Vector_2" d="M43 94C91 88 269 88 317 94" stroke="#C1B08F" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_65" x1="23" y1="80.75" x2="23" y2="170" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8D7F68"/>
+<stop offset="1" stop-color="#716552"/>
+</linearGradient>
+</defs>
+</svg>

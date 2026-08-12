@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="190" viewBox="0 0 360 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Lid Inner Contour">
+<path id="Vector" d="M67 16C92 13 268 13 293 16C299 17 303 22 304 30L306 56C307 62 302 66 295 66H65C58 66 53 62 54 56L56 30C57 22 61 17 67 16Z" fill="url(#paint0_linear_0_75)" stroke="#B09F81" stroke-opacity="0.55" stroke-width="2"/>
+<path id="Vector_2" opacity="0.28" d="M73 22C99 20 261 20 287 22C292 23 295 27 296 34L297 55H63L64 34C65 27 68 23 73 22Z" fill="#6F6351"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_75" x1="53.8726" y1="13.75" x2="53.8726" y2="66" gradientUnits="userSpaceOnUse">
+<stop stop-color="#92836B"/>
+<stop offset="1" stop-color="#786B57"/>
+</linearGradient>
+</defs>
+</svg>

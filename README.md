@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# Egg Factory
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Egg Factory is a responsive React application for Övning 10. The operator loads individual feeders, monitors their shared load, and watches ten eggs transfer automatically into a carton.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Validation
+
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+npm run check
+```
+
+`npm run check` runs linting, type checking, tests, and the production build in that order.
+
+## Technology and structure
+
+- React, TypeScript, and Vite
+- Standard CSS with design tokens
+- Vitest and Testing Library
+- Local Fontsource packages for Barlow Condensed and Space Mono
+- One authoritative state model in `App`; the machine and control panel render the same data
+
+The design is implemented from Figma nodes `60:3` and `80:263` in read-only mode. Durable exported Figma assets live under `src/assets/figma/`. This repository does not modify the Figma file.

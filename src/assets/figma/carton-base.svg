@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="190" viewBox="0 0 360 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Base Shell Contour">
+<path id="Vector" opacity="0.28" d="M28 76C68 69 292 69 332 76C343 78 348 87 348 101L345 157C344 171 336 180 322 183C268 188 92 188 38 183C24 180 16 171 15 157L12 101C12 87 17 78 28 76Z" fill="#4D4438"/>
+<path id="Vector_2" d="M31 77C71 71 289 71 329 77C339 79 344 87 344 101L341 156C340 169 332 176 319 179C266 184 94 184 41 179C28 176 20 169 19 156L16 101C16 87 21 79 31 77Z" fill="url(#paint0_linear_0_78)" stroke="#655A49" stroke-width="2"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_78" x1="16" y1="72.5" x2="16" y2="182.75" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A39479"/>
+<stop offset="0.62" stop-color="#8A7B64"/>
+<stop offset="1" stop-color="#6E624F"/>
+</linearGradient>
+</defs>
+</svg>

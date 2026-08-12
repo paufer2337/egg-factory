@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="58" height="36" viewBox="0 0 58 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Slot 06">
+<path id="Cavity" d="M3 11C3 4 12.76 2 29 2C45.24 2 55 4 55 11C55 36 41.76 35 29 35C16.24 35 3 36 3 11Z" fill="url(#paint0_linear_0_17)" stroke="#564C3E"/>
+<path id="Rear Bowl / Inner Wall" d="M7 12C11.6 4 20.3 3 29 3C37.7 3 46.4 4 51 12C41.76 9 16.24 9 7 12Z" fill="#7B6E59"/>
+<path id="Side Walls" opacity="0.82" d="M4 12C7 20 8 28 15 32L20 28C14 22 13 14 10 10L4 12ZM54 12C51 20 50 28 43 32L38 28C44 22 45 14 48 10L54 12Z" fill="#8C7D65"/>
+<path id="Local Contact Shadow Region" opacity="0.56" d="M14.5 17.28C19.72 13.68 38.28 13.68 43.5 17.28C38.28 22.32 19.72 22.32 14.5 17.28Z" fill="#332C25"/>
+<path id="Foreground Cup Lip" d="M1 22.32C10.44 18.32 19.14 21.32 29 23.32C38.86 21.32 47.56 18.32 57 22.32L54 30.32C40.6 26.32 17.4 26.32 4 30.32L1 22.32Z" fill="url(#paint1_linear_0_17)" stroke="#665B4A" stroke-width="0.8"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_17" x1="3" y1="2" x2="3" y2="35.0055" gradientUnits="userSpaceOnUse">
+<stop stop-color="#615647"/>
+<stop offset="1" stop-color="#433B31"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_17" x1="1" y1="20.3484" x2="1" y2="30.32" gradientUnits="userSpaceOnUse">
+<stop stop-color="#AA9A7D"/>
+<stop offset="1" stop-color="#81735D"/>
+</linearGradient>
+</defs>
+</svg>

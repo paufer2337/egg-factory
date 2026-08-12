@@ -1,0 +1,31 @@
+:root {
+  --color-app-background: #0f0d0b;
+  --color-metal-surface: #292521;
+  --color-metal-raised: #3d3832;
+  --color-dashboard-panel: #171412;
+  --color-dashboard-inset: #0c0b0a;
+  --color-border: #504b44;
+  --color-border-subtle: #2e2924;
+  --color-egg: #f0e3bf;
+  --color-carton: #a09b91;
+  --color-amber: #e07b18;
+  --color-amber-dark: #a05811;
+  --color-safety-red: #8b2e1c;
+  --color-success: #4faf5b;
+  --color-text: #f0ebe1;
+  --color-text-muted: #a09b91;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --radius-sm: 3px;
+  --radius-md: 7px;
+  --radius-lg: 12px;
+  --shadow-panel: 0 16px 50px rgb(0 0 0 / 45%), inset 0 1px rgb(255 255 255 / 5%);
+  --shadow-inset: inset 0 2px 8px rgb(0 0 0 / 70%);
+  --focus-ring: 0 0 0 3px #f0ebe1, 0 0 0 6px #e07b18;
+  --font-heading: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-mono: 'Space Mono', Consolas, monospace;
+}

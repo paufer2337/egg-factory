@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="190" viewBox="0 0 360 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Lid Contour" clip-path="url(#clip0_0_71)">
+<path id="Vector" opacity="0.32" d="M54 4C80 0 280 0 306 4C315 6 319 14 320 27L322 60C322 69 315 75 305 76C265 79 95 79 55 76C45 75 38 69 39 60L41 27C42 14 45 6 54 4Z" fill="#6E6251"/>
+<path id="Vector_2" d="M57 3C83 0 277 0 303 3C312 5 316 13 317 26L319 58C319 67 312 72 302 73C263 76 97 76 58 73C48 72 41 67 42 58L44 26C45 13 48 5 57 3Z" fill="url(#paint0_linear_0_71)" stroke="#716553" stroke-width="2"/>
+<path id="Vector_3" d="M61 8C88 5 272 5 299 8C306 9 310 16 311 27" stroke="#C7B896" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_71" x1="41.905" y1="0.75" x2="41.905" y2="75.25" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B4A486"/>
+<stop offset="1" stop-color="#887A64"/>
+</linearGradient>
+<clipPath id="clip0_0_71">
+<rect width="360" height="190" fill="white"/>
+</clipPath>
+</defs>
+</svg>

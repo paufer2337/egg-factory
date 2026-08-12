@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="190" viewBox="0 0 360 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Front Wall Contour">
+<path id="Vector" d="M23 163C82 170 278 170 337 163L332 177C277 184 83 184 28 177L23 163Z" fill="url(#paint0_linear_0_4)" stroke="#5E5444" stroke-width="1.5"/>
+<path id="Vector_2" d="M39 171C97 176 263 176 321 171" stroke="#AA997C" stroke-opacity="0.38" stroke-width="2" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="23" y1="163" x2="23" y2="182.25" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8F8068"/>
+<stop offset="1" stop-color="#6E624F"/>
+</linearGradient>
+</defs>
+</svg>
