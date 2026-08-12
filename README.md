@@ -2,6 +2,10 @@
 
 Egg Factory is a responsive React application for Övning 10. The operator loads individual feeders, monitors their shared load, and watches ten eggs transfer automatically into a carton.
 
+## Live demo
+
+[View Egg Factory on GitHub Pages](https://paufer2337.github.io/egg-factory/)
+
 ## Run locally
 
 ```bash
