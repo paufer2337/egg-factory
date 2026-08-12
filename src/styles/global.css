@@ -32,8 +32,9 @@ button {
 }
 
 button:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-amber);
 }
 
 img {

@@ -26,7 +26,7 @@ npm run check
 - React, TypeScript, and Vite
 - Standard CSS with design tokens
 - Vitest and Testing Library
-- Local Fontsource packages for Barlow Condensed and Space Mono
+- Local Fontsource packages for Barlow Condensed, Cooper Hewitt, and Space Mono
 - One authoritative state model in `App`; the machine and control panel render the same data
 
 The design is implemented from Figma nodes `60:3` and `80:263` in read-only mode. Durable exported Figma assets live under `src/assets/figma/`. This repository does not modify the Figma file.

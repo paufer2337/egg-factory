@@ -10,13 +10,17 @@ type MachineVisualProps = {
 }
 
 export function MachineVisual({ counters, total, phase }: MachineVisualProps) {
+  const physicalLaneIds = [1, 2, 3, 4]
+
   return (
     <section className="machine-section" aria-labelledby="machine-heading">
       <h2 id="machine-heading" className="sr-only">Machine overview</h2>
       <div className="machine-visual" aria-hidden="true">
         <img className="machine-visual__chassis" src={chassis} width="1536" height="1024" alt="" />
-        <div className="machine-visual__lanes" style={{ gridTemplateColumns: `repeat(${Math.max(counters.length, 1)}, 1fr)` }}>
-          {counters.map((counter) => <FeederLane counter={counter} key={counter.id} />)}
+        <div className="machine-visual__lanes">
+          {physicalLaneIds.map((id) => (
+            <FeederLane counter={counters.find((counter) => counter.id === id)} key={id} />
+          ))}
         </div>
         <Carton occupancy={total} phase={phase} />
         {counters.length === 0 && <div className="machine-visual__empty">EMPTY MACHINE RACK</div>}

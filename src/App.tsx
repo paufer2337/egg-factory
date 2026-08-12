@@ -148,7 +148,7 @@ function App() {
           {capacityMessage && <p className="capacity-message" role="status">{capacityMessage}</p>}
 
           {counters.length > 0 ? (
-            <div className="counter-grid">
+            <div className={`counter-grid ${counters.length > 8 ? 'counter-grid--scrolling' : ''}`}>
               {counters.map((counter) => (
                 <Counter
                   {...counter}

@@ -74,6 +74,15 @@ describe('Egg Factory', () => {
     expect(within(counterCard('FEEDER 5')).getByRole('button', { name: 'Load egg into feeder 5' })).toBeEnabled()
   })
 
+  it('keeps additional counters out of the four physical machine lanes', () => {
+    const { container } = render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    load('FEEDER 5', 3)
+
+    expect(container.querySelectorAll('.feeder-lane')).toHaveLength(4)
+    expect(container.querySelectorAll('.feeder-lane__eggs img')).toHaveLength(0)
+  })
+
   it('MASTER RESET preserves the roster and resets counters, disabled state, and collector', () => {
     vi.useFakeTimers()
     render(<App />)
