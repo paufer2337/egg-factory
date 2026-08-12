@@ -119,7 +119,7 @@ function App() {
         <div className="app-header__identity">
           <span className="brand-mark" aria-hidden="true"><span /></span>
           <div>
-            <div className="eyebrow">AUTOMATED EGG COUNTER / Preparation & Research: 6h | Coding: 5h</div>
+            <div className="eyebrow">AUTOMATED EGG COUNTER</div>
             <h1>EGG FACTORY - Exercise #10</h1>
           </div>
         </div>
