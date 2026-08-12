@@ -42,6 +42,24 @@ describe('Egg Factory', () => {
     }
   })
 
+  it('renders verified credits as secure external links', () => {
+    render(<App />)
+
+    expect(screen.getByText('AUTOMATED EGG COUNTER')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'CREDITS' })).toBeInTheDocument()
+
+    const nouriLink = screen.getByRole('link', { name: 'Nouri Atchabao' })
+    expect(nouriLink).toHaveAttribute('href', 'https://www.vecteezy.com/vector-art/96804-free-countdown-timer-vector')
+    expect(nouriLink).toHaveAttribute('target', '_blank')
+    expect(nouriLink).toHaveAttribute('rel', 'noopener noreferrer')
+
+    const laszloLink = screen.getByRole('link', { name: 'László Prekop' })
+    expect(laszloLink).toHaveAttribute('href', 'https://github.com/laszloprekop')
+    expect(laszloLink).toHaveAttribute('target', '_blank')
+    expect(laszloLink).toHaveAttribute('rel', 'noopener noreferrer')
+    expect(laszloLink.closest('strong')).toBeInTheDocument()
+  })
+
   it('increments only the selected counter', () => {
     render(<App />)
     load('FEEDER 2')

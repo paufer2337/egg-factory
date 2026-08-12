@@ -30,3 +30,7 @@ npm run check
 - One authoritative state model in `App`; the machine and control panel render the same data
 
 The design is implemented from Figma nodes `60:3` and `80:263` in read-only mode. Durable exported Figma assets live under `src/assets/figma/`. This repository does not modify the Figma file.
+
+## Special thanks
+
+My deepest thanks to **[László Prekop](https://github.com/laszloprekop)**, who tutored and inspired me throughout this project. He generously shared ideas, practical techniques, and a live tour of his workflow, encouraging me to go beyond the expected and create something more exceptional. His guidance played part in helping me reach this level.

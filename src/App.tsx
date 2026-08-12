@@ -119,8 +119,8 @@ function App() {
         <div className="app-header__identity">
           <span className="brand-mark" aria-hidden="true"><span /></span>
           <div>
-            <div className="eyebrow">AUTOMATED EGG HANDLING / LINE 01</div>
-            <h1>EGG FACTORY</h1>
+            <div className="eyebrow">AUTOMATED EGG COUNTER / Preparation & Research: 6h | Coding: 5h</div>
+            <h1>EGG FACTORY - Exercise #10</h1>
           </div>
         </div>
         <SystemMessage phase={phase} />
@@ -128,6 +128,26 @@ function App() {
 
       <div className="machine-stage">
         <MachineVisual counters={counters} total={total} phase={phase} />
+
+        <aside className="credits-panel" aria-labelledby="credits-heading">
+          <h2 id="credits-heading">CREDITS</h2>
+          <p>
+            Split-flap design reference by{' '}
+            <a href="https://www.vecteezy.com/vector-art/96804-free-countdown-timer-vector" target="_blank" rel="noopener noreferrer">
+              Nouri Atchabao
+            </a>{' '}
+            via Vecteezy.
+          </p>
+          <p>
+            Special thanks to{' '}
+            <strong>
+              <a href="https://github.com/laszloprekop" target="_blank" rel="noopener noreferrer">
+                László Prekop
+              </a>
+            </strong>{' '}
+            for his generous guidance, practical tips, and encouragement to take this project beyond the expected.
+          </p>
+        </aside>
 
         <section className="control-console" aria-labelledby="dashboard-heading">
           <h2 id="dashboard-heading" className="sr-only">Operator panel</h2>

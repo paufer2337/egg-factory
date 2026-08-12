@@ -110,6 +110,59 @@ h1 {
   box-shadow: var(--shadow-panel);
 }
 
+.credits-panel {
+  position: absolute;
+  z-index: 8;
+  top: 2.5%;
+  right: 2%;
+  width: 23.5%;
+  min-width: 0;
+  padding: clamp(0.4rem, 0.7vw, 0.6rem);
+  border: 2px solid rgb(147 134 117 / 34%);
+  border-radius: 3px;
+  color: #aaa298;
+  background: rgb(14 13 12 / 82%);
+  box-shadow: inset 0 1px rgb(255 255 255 / 3%), 0 4px 12px rgb(0 0 0 / 24%);
+  font: 600 clamp(0.75rem, 1vw, 0.8125rem)/1.35 var(--font-heading);
+}
+
+.credits-panel h2 {
+  margin-block-end: 0.3rem;
+  color: #d2c9bd;
+  font: 700 clamp(0.75rem, 1vw, 0.875rem)/1.15 var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.credits-panel p {
+  margin-block-end: 0.35rem;
+}
+
+.credits-panel p:last-child {
+  margin-block-end: 0;
+}
+
+.credits-panel strong {
+  font-weight: 700;
+}
+
+.credits-panel a {
+  color: #c9b79d;
+  text-decoration-color: rgb(201 183 157 / 62%);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.credits-panel a:hover {
+  color: #e0a35b;
+  text-decoration-color: currentColor;
+}
+
+.credits-panel a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
 .machine-section {
   position: absolute;
   inset: 0;
@@ -768,6 +821,16 @@ h1 {
 
   .machine-visual {
     aspect-ratio: 3 / 2;
+  }
+
+  .credits-panel {
+    position: relative;
+    inset: auto;
+    width: auto;
+    padding: 0.8rem;
+    border-inline: 0;
+    border-radius: 0;
+    font-size: 1rem;
   }
 
   .empty-rack-message {
