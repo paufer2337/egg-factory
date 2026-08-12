@@ -133,66 +133,57 @@ function App() {
         <SystemMessage phase={phase} />
       </header>
 
-      <MachineVisual counters={counters} total={total} phase={phase} />
+      <div className="machine-stage">
+        <MachineVisual counters={counters} total={total} phase={phase} />
 
-      <section className="control-console" aria-labelledby="dashboard-heading">
-        <div className="control-console__bevel" aria-hidden="true" />
-        <header className="control-console__header">
-          <div>
-            <div className="section-kicker">CONTROL SYSTEM</div>
-            <h2 id="dashboard-heading">OPERATOR PANEL</h2>
+        <section className="control-console" aria-labelledby="dashboard-heading">
+          <h2 id="dashboard-heading" className="sr-only">Operator panel</h2>
+          <div className="control-console__bevel" aria-hidden="true" />
+
+          <div className="readout-grid">
+            <TotalMeter total={total} capacity={capacity} booting={booting} />
+            <Collector value={collector} booting={booting} />
           </div>
-          <div className="console-state"><span aria-hidden="true" /> {phase === 'idle' ? 'SYSTEM READY' : 'TRANSFER IN PROGRESS'}</div>
-        </header>
 
-        <div className="readout-grid">
-          <TotalMeter total={total} capacity={capacity} booting={booting} />
-          <Collector value={collector} booting={booting} />
-        </div>
+          {capacityMessage && <p className="capacity-message" role="status">{capacityMessage}</p>}
 
-        {capacityMessage && <p className="capacity-message" role="status">{capacityMessage}</p>}
-
-        {counters.length > 0 ? (
-          <div className="counter-grid">
-            {counters.map((counter) => (
-              <Counter
-                {...counter}
-                transferLocked={controlsDisabled}
-                booting={booting}
-                onLoad={handleLoad}
-                onRemove={handleRemove}
-                key={counter.id}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="empty-control-state">
-            <div>
-              <strong>NO FEEDERS CONNECTED</strong>
-              <span>Add a feeder to begin loading.</span>
+          {counters.length > 0 ? (
+            <div className="counter-grid">
+              {counters.map((counter) => (
+                <Counter
+                  {...counter}
+                  transferLocked={controlsDisabled}
+                  booting={booting}
+                  onLoad={handleLoad}
+                  onRemove={handleRemove}
+                  key={counter.id}
+                />
+              ))}
             </div>
-            <button className="button button--primary button--add" type="button" onClick={handleAdd} disabled={controlsDisabled} aria-label="Add feeder">
-              + ADD FEEDER
-            </button>
-          </div>
-        )}
-
-        <footer className="utility-controls">
-          {counters.length > 0 && (
-            <button className="button button--primary button--add" type="button" onClick={handleAdd} disabled={controlsDisabled} aria-label="Add feeder">
-              + ADD FEEDER
-            </button>
+          ) : (
+            <div className="empty-control-state">
+              <div>
+                <strong>NO FEEDERS CONNECTED</strong>
+                <span>Add a feeder to begin loading.</span>
+              </div>
+              <button className="button button--primary button--add" type="button" onClick={handleAdd} disabled={controlsDisabled} aria-label="Add feeder">
+                + ADD FEEDER
+              </button>
+            </div>
           )}
-          <button className="button button--danger" type="button" onClick={handleReset} aria-label="Master reset">
-            MASTER RESET
-          </button>
-        </footer>
-      </section>
 
-      <footer className="app-footer">
-        <span>EGG FACTORY / OPERATOR PANEL</span>
-        <span>MAXIMUM LOAD: 10 EGGS PER CYCLE</span>
-      </footer>
+          <footer className="utility-controls">
+            {counters.length > 0 && (
+              <button className="button button--primary button--add" type="button" onClick={handleAdd} disabled={controlsDisabled} aria-label="Add feeder">
+                + ADD FEEDER
+              </button>
+            )}
+            <button className="button button--danger" type="button" onClick={handleReset} aria-label="Master reset">
+              MASTER RESET
+            </button>
+          </footer>
+        </section>
+      </div>
     </main>
   )
 }

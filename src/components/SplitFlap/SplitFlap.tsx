@@ -30,13 +30,13 @@ export function SplitFlap({ value, className = '', stagger = false, booting = fa
           const style = { '--flap-delay': `${stagger ? index * FLIP_STAGGER_MS : 0}ms` } as CSSProperties
           return (
             <span className={`flap-tile ${isFlipping ? 'flap-tile--flipping' : ''}`} style={style} key={`${index}-${character}`}>
-              <span className="flap-tile__upper"><span>{character}</span></span>
-              <span className="flap-tile__lower"><span>{character}</span></span>
+              <span className="flap-tile__upper"><span className="flap-tile__glyph">{character}</span></span>
+              <span className="flap-tile__lower"><span className="flap-tile__glyph">{character}</span></span>
               <span className="flap-tile__seam" />
               <span className="flap-tile__hinge flap-tile__hinge--left" />
               <span className="flap-tile__hinge flap-tile__hinge--right" />
-              <span className="flap-tile__outgoing"><span>{outgoing}</span></span>
-              <span className="flap-tile__incoming"><span>{character}</span></span>
+              <span className="flap-tile__outgoing"><span className="flap-tile__glyph">{outgoing}</span></span>
+              <span className="flap-tile__incoming"><span className="flap-tile__glyph">{character}</span></span>
             </span>
           )
         })}
