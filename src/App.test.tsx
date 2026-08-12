@@ -5,7 +5,7 @@ import { Counter } from './components/Counter/Counter'
 import { createCounter, initialCounters } from './counters'
 
 function counterCard(label: string) {
-  return screen.getByRole('group', { name: label })
+  return screen.getByRole('article', { name: label })
 }
 
 function load(label: string, times = 1) {
@@ -32,7 +32,10 @@ describe('Egg Factory', () => {
   it('starts with four counters at zero', () => {
     render(<App />)
 
-    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(4)
+    expect(screen.getAllByRole('article', { name: /FEEDER \d+/ })).toHaveLength(4)
+    expect(counterCard('FEEDER 1')).not.toHaveAttribute('role')
+    expect(counterCard('FEEDER 1').querySelector('.counter-card__capacity')).toHaveAttribute('aria-hidden', 'true')
+    expect(counterCard('FEEDER 1').querySelector('.counter-card__capacity')).not.toHaveAttribute('aria-label')
     for (let id = 1; id <= 4; id += 1) {
       expect(counterValue(`FEEDER ${id}`)).toHaveAttribute('data-value', '0')
       expect(within(counterCard(`FEEDER ${id}`)).getByRole('button', { name: `Load egg into feeder ${id}` })).toBeEnabled()
@@ -74,7 +77,7 @@ describe('Egg Factory', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
     fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
 
-    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(6)
+    expect(screen.getAllByRole('article', { name: /FEEDER \d+/ })).toHaveLength(6)
     for (let displayNumber = 1; displayNumber <= 6; displayNumber += 1) {
       expect(counterCard(`FEEDER ${displayNumber}`)).toBeInTheDocument()
     }
@@ -89,7 +92,7 @@ describe('Egg Factory', () => {
     fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
     fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
 
-    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(4)
+    expect(screen.getAllByRole('article', { name: /FEEDER \d+/ })).toHaveLength(4)
     for (let displayNumber = 1; displayNumber <= 4; displayNumber += 1) {
       expect(counterCard(`FEEDER ${displayNumber}`)).toBeInTheDocument()
     }
@@ -170,7 +173,7 @@ describe('Egg Factory', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Master reset' }))
     act(() => vi.runAllTimers())
 
-    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(4)
+    expect(screen.getAllByRole('article', { name: /FEEDER \d+/ })).toHaveLength(4)
     for (let id = 1; id <= 4; id += 1) {
       expect(counterValue(`FEEDER ${id}`)).toHaveAttribute('data-value', '0')
       expect(within(counterCard(`FEEDER ${id}`)).getByRole('button', { name: `Load egg into feeder ${id}` })).toBeEnabled()

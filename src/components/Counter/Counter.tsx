@@ -16,10 +16,10 @@ export function Counter({ id, displayNumber, value, disabled, transferLocked, bo
   const labelId = `feeder-${displayNumber}-label`
 
   return (
-    <article className={`counter-card ${full ? 'counter-card--full' : ''}`} role="group" aria-labelledby={labelId}>
+    <article className={`counter-card ${full ? 'counter-card--full' : ''}`} aria-labelledby={labelId}>
       <header className="counter-card__header">
         <h3 id={labelId}>{label}</h3>
-        <span className="counter-card__capacity" aria-label={`${value} of 3 slots filled`}>
+        <span className="counter-card__capacity" aria-hidden="true">
           {[0, 1, 2].map((slot) => <span className={slot < value ? 'is-filled' : ''} key={slot} aria-hidden="true" />)}
         </span>
       </header>

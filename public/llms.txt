@@ -1,0 +1,7 @@
+# Egg Factory
+
+Egg Factory is an interactive operator panel for loading eggs into a shared automated carton workflow.
+
+- [Open Egg Factory](/)
+
+The counter dashboard lets an operator load, add, and remove feeders, monitor their combined total, and automatically transfer each completed ten-egg load to the collector.

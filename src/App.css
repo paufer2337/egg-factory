@@ -143,6 +143,12 @@ h1 {
   object-fit: cover;
 }
 
+.machine-visual__picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .machine-visual__lanes {
   position: absolute;
   z-index: 2;
