@@ -12,7 +12,6 @@ type MachineVisualProps = {
 export function MachineVisual({ counters, total, phase }: MachineVisualProps) {
   return (
     <section className="machine-section" aria-labelledby="machine-heading">
-      <div className="section-kicker">MACHINE OVERVIEW</div>
       <h2 id="machine-heading" className="sr-only">Machine overview</h2>
       <div className="machine-visual" aria-hidden="true">
         <img className="machine-visual__chassis" src={chassis} width="1536" height="1024" alt="" />
