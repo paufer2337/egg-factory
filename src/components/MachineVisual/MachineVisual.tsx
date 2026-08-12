@@ -10,7 +10,7 @@ type MachineVisualProps = {
 }
 
 export function MachineVisual({ counters, total, phase }: MachineVisualProps) {
-  const physicalLaneIds = [1, 2, 3, 4]
+  const physicalCounters = counters.slice(0, 4)
 
   return (
     <section className="machine-section" aria-labelledby="machine-heading">
@@ -18,8 +18,8 @@ export function MachineVisual({ counters, total, phase }: MachineVisualProps) {
       <div className="machine-visual" aria-hidden="true">
         <img className="machine-visual__chassis" src={chassis} width="1536" height="1024" alt="" />
         <div className="machine-visual__lanes">
-          {physicalLaneIds.map((id) => (
-            <FeederLane counter={counters.find((counter) => counter.id === id)} key={id} />
+          {Array.from({ length: 4 }, (_, index) => (
+            <FeederLane counter={physicalCounters[index]} key={index} />
           ))}
         </div>
         <Carton occupancy={total} phase={phase} />

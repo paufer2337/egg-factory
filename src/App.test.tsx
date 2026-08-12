@@ -1,6 +1,8 @@
 import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import App, { THRESHOLD_HOLD_MS, TRANSFER_PHASE_MS } from './App'
+import { Counter } from './components/Counter/Counter'
+import { createCounter, initialCounters } from './counters'
 
 function counterCard(label: string) {
   return screen.getByRole('group', { name: label })
@@ -16,6 +18,10 @@ function load(label: string, times = 1) {
 
 function counterValue(label: string) {
   return within(counterCard(label)).getByLabelText(`${label}, egg count`)
+}
+
+function physicalLaneValues(container: HTMLElement) {
+  return [...container.querySelectorAll('.feeder-lane')].map((lane) => lane.querySelectorAll('.feeder-lane__eggs img').length)
 }
 
 describe('Egg Factory', () => {
@@ -63,24 +69,93 @@ describe('Egg Factory', () => {
     expect(screen.getByLabelText('Current load')).toHaveAttribute('data-value', '1')
   })
 
-  it('preserves stable IDs through removal and assigns a new unused ID', () => {
+  it('displays six counters with contiguous feeder numbers', () => {
     render(<App />)
-    fireEvent.click(within(counterCard('FEEDER 2')).getByRole('button', { name: 'Remove feeder 2' }))
-
-    expect(screen.queryByRole('group', { name: 'FEEDER 2' })).not.toBeInTheDocument()
-    expect(counterCard('FEEDER 3')).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
-    expect(counterValue('FEEDER 5')).toHaveAttribute('data-value', '0')
-    expect(within(counterCard('FEEDER 5')).getByRole('button', { name: 'Load egg into feeder 5' })).toBeEnabled()
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+
+    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(6)
+    for (let displayNumber = 1; displayNumber <= 6; displayNumber += 1) {
+      expect(counterCard(`FEEDER ${displayNumber}`)).toBeInTheDocument()
+    }
   })
 
-  it('keeps additional counters out of the four physical machine lanes', () => {
+  it('renumbers visible feeders while preserving values and disabled state', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    load('FEEDER 3', 3)
+
+    fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
+    fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
+
+    expect(screen.getAllByRole('group', { name: /FEEDER \d+/ })).toHaveLength(4)
+    for (let displayNumber = 1; displayNumber <= 4; displayNumber += 1) {
+      expect(counterCard(`FEEDER ${displayNumber}`)).toBeInTheDocument()
+    }
+    expect(counterValue('FEEDER 1')).toHaveAttribute('data-value', '3')
+    expect(within(counterCard('FEEDER 1')).getByText('FULL')).toBeInTheDocument()
+    expect(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Load egg into feeder 1' })).toBeDisabled()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    expect(counterCard('FEEDER 5')).toBeInTheDocument()
+  })
+
+  it('keeps stable internal IDs separate from visible numbering and callbacks', () => {
+    const onLoad = vi.fn()
+    const onRemove = vi.fn()
+    const survivors = initialCounters.filter((counter) => counter.id > 2)
+    const roster = [...survivors, createCounter(5), createCounter(6)]
+
+    expect(roster.map((counter) => counter.id)).toEqual([3, 4, 5, 6])
+    expect(new Set(roster.map((counter) => counter.id)).size).toBe(roster.length)
+
+    render(
+      <Counter
+        {...createCounter(13)}
+        displayNumber={1}
+        transferLocked={false}
+        onLoad={onLoad}
+        onRemove={onRemove}
+      />,
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'Load egg into feeder 1' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Remove feeder 1' }))
+
+    expect(onLoad).toHaveBeenCalledWith(13)
+    expect(onRemove).toHaveBeenCalledWith(13)
+    expect(screen.queryByText(/13/)).not.toBeInTheDocument()
+  })
+
+  it('keeps counters after the first four out of photographic lanes', () => {
     const { container } = render(<App />)
     fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
     load('FEEDER 5', 3)
 
-    expect(container.querySelectorAll('.feeder-lane')).toHaveLength(4)
-    expect(container.querySelectorAll('.feeder-lane__eggs img')).toHaveLength(0)
+    expect(physicalLaneValues(container)).toEqual([0, 0, 0, 0])
+  })
+
+  it('projects the first four current counters into physical slots regardless of internal IDs', () => {
+    const { container } = render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Add feeder' }))
+    load('FEEDER 5', 2)
+
+    fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
+    fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
+
+    expect(physicalLaneValues(container)).toEqual([0, 0, 2, 0])
+  })
+
+  it('shifts later occupancy into earlier physical slots after removal', () => {
+    const { container } = render(<App />)
+    load('FEEDER 2')
+    load('FEEDER 3', 2)
+    expect(physicalLaneValues(container)).toEqual([0, 1, 2, 0])
+
+    fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
+
+    expect(physicalLaneValues(container)).toEqual([1, 2, 0, 0])
   })
 
   it('MASTER RESET preserves the roster and resets counters, disabled state, and collector', () => {
@@ -103,19 +178,26 @@ describe('Egg Factory', () => {
     expect(screen.getByLabelText('Packed eggs')).toHaveAttribute('data-value', '0')
   })
 
-  it('shows the exact below-capacity explanation for three counters', () => {
+  it('explains maximum capacity for three, two, and one remaining feeder', () => {
     render(<App />)
     fireEvent.click(within(counterCard('FEEDER 4')).getByRole('button', { name: 'Remove feeder 4' }))
-    expect(screen.getByText('Capacity is 9. Add a feeder to reach 10.')).toBeInTheDocument()
+    expect(screen.getByText('Maximum with 3 feeders: 9 eggs. Add 1 feeder to enable a 10-egg carton transfer.')).toBeInTheDocument()
+
+    fireEvent.click(within(counterCard('FEEDER 3')).getByRole('button', { name: 'Remove feeder 3' }))
+    expect(screen.getByText('Maximum with 2 feeders: 6 eggs. Add 2 feeders to enable a 10-egg carton transfer.')).toBeInTheDocument()
+
+    fireEvent.click(within(counterCard('FEEDER 2')).getByRole('button', { name: 'Remove feeder 2' }))
+    expect(screen.getByText('Maximum with 1 feeder: 3 eggs. Add 3 feeders to enable a 10-egg carton transfer.')).toBeInTheDocument()
   })
 
   it('keeps the shell, total, collector, and add action in the empty state', () => {
     render(<App />)
-    for (let id = 1; id <= 4; id += 1) {
-      fireEvent.click(within(counterCard(`FEEDER ${id}`)).getByRole('button', { name: `Remove feeder ${id}` }))
+    for (let remaining = 4; remaining > 0; remaining -= 1) {
+      fireEvent.click(within(counterCard('FEEDER 1')).getByRole('button', { name: 'Remove feeder 1' }))
     }
 
     expect(screen.getByText('Machine rack is empty.')).toBeInTheDocument()
+    expect(screen.queryByText(/Maximum with/)).not.toBeInTheDocument()
     expect(screen.getByLabelText('Current load')).toBeInTheDocument()
     expect(screen.getByLabelText('Packed eggs')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Add feeder' })).toBeInTheDocument()

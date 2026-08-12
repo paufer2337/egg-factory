@@ -4,19 +4,13 @@ import { Counter } from './components/Counter/Counter'
 import { MachineVisual } from './components/MachineVisual/MachineVisual'
 import { SystemMessage } from './components/SystemMessage/SystemMessage'
 import { TotalMeter } from './components/TotalMeter/TotalMeter'
+import { createCounter, initialCounters } from './counters'
 import type { CounterState, TransferPhase } from './types'
 import './App.css'
 
 export const THRESHOLD_HOLD_MS = 300
 export const TRANSFER_PHASE_MS = 220
 export const BOOT_DURATION_MS = 360
-
-const initialCounters: CounterState[] = [
-  { id: 1, label: 'FEEDER 1', value: 0, disabled: false },
-  { id: 2, label: 'FEEDER 2', value: 0, disabled: false },
-  { id: 3, label: 'FEEDER 3', value: 0, disabled: false },
-  { id: 4, label: 'FEEDER 4', value: 0, disabled: false },
-]
 
 function App() {
   const [counters, setCounters] = useState<CounterState[]>(initialCounters)
@@ -103,7 +97,7 @@ function App() {
     if (controlsDisabled) return
     const id = nextCounterId.current
     nextCounterId.current += 1
-    setCounters((current) => [...current, { id, label: `FEEDER ${id}`, value: 0, disabled: false }])
+    setCounters((current) => [...current, createCounter(id)])
   }
 
   const handleReset = () => {
@@ -114,10 +108,9 @@ function App() {
     setPhase('idle')
   }
 
-  const capacityMessage = capacity < 10
-    ? capacity === 9
-      ? 'Capacity is 9. Add a feeder to reach 10.'
-      : `Capacity is ${capacity}. Add ${Math.ceil((10 - capacity) / 3)} feeders to reach 10.`
+  const feedersNeeded = Math.ceil((10 - capacity) / 3)
+  const capacityMessage = counters.length > 0 && capacity < 10
+    ? `Maximum with ${counters.length} ${counters.length === 1 ? 'feeder' : 'feeders'}: ${capacity} ${capacity === 1 ? 'egg' : 'eggs'}. Add ${feedersNeeded} ${feedersNeeded === 1 ? 'feeder' : 'feeders'} to enable a 10-egg carton transfer.`
     : null
 
   return (
@@ -149,9 +142,10 @@ function App() {
 
           {counters.length > 0 ? (
             <div className={`counter-grid ${counters.length > 8 ? 'counter-grid--scrolling' : ''}`}>
-              {counters.map((counter) => (
+              {counters.map((counter, index) => (
                 <Counter
                   {...counter}
+                  displayNumber={index + 1}
                   transferLocked={controlsDisabled}
                   booting={booting}
                   onLoad={handleLoad}

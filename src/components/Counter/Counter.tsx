@@ -3,15 +3,17 @@ import { SplitFlap } from '../SplitFlap/SplitFlap'
 import { StatusWord } from '../StatusWord/StatusWord'
 
 type CounterProps = CounterState & {
+  displayNumber: number
   transferLocked: boolean
   booting?: boolean
   onLoad: (id: number) => void
   onRemove: (id: number) => void
 }
 
-export function Counter({ id, label, value, disabled, transferLocked, booting = false, onLoad, onRemove }: CounterProps) {
+export function Counter({ id, displayNumber, value, disabled, transferLocked, booting = false, onLoad, onRemove }: CounterProps) {
   const full = value >= 3
-  const labelId = `counter-${id}-label`
+  const label = `FEEDER ${displayNumber}`
+  const labelId = `feeder-${displayNumber}-label`
 
   return (
     <article className={`counter-card ${full ? 'counter-card--full' : ''}`} role="group" aria-labelledby={labelId}>
@@ -32,7 +34,7 @@ export function Counter({ id, label, value, disabled, transferLocked, booting = 
         type="button"
         onClick={() => onLoad(id)}
         disabled={disabled || transferLocked}
-        aria-label={`Load egg into feeder ${id}`}
+        aria-label={`Load egg into feeder ${displayNumber}`}
       >
         LOAD EGG
       </button>
@@ -41,7 +43,7 @@ export function Counter({ id, label, value, disabled, transferLocked, booting = 
         type="button"
         onClick={() => onRemove(id)}
         disabled={transferLocked}
-        aria-label={`Remove feeder ${id}`}
+        aria-label={`Remove feeder ${displayNumber}`}
       >
         REMOVE FEEDER
       </button>

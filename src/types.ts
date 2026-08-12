@@ -1,6 +1,5 @@
 export type CounterState = {
   id: number
-  label: string
   value: number
   disabled: boolean
 }
